@@ -6,12 +6,14 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? textControleer;
   final Color textColor;
   final Color borderColor;
+  final Color inputColor;
   const CustomTextField(
       {super.key,
       required this.hint,
       this.textControleer,
       this.textColor = Colors.black,
-      this.borderColor = Colors.black});
+      this.borderColor = Colors.black,
+      this.inputColor = Colors.black});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -23,6 +25,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       controller: widget.textControleer,
       cursorColor: AppColors.blueColor,
+      style: TextStyle(color: widget.inputColor),
       decoration: InputDecoration(
           isDense: true,
           focusedBorder: OutlineInputBorder(

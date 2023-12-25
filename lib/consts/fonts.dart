@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mediapp/consts/colors.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AppFonts {

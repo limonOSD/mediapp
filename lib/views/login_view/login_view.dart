@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mediapp/consts/colors.dart';
 import 'package:mediapp/consts/fonts.dart';
 import 'package:mediapp/consts/strings.dart';
+import 'package:mediapp/controllers/authcontroller.dart';
 import 'package:mediapp/resourses/components/custom_button.dart';
 import 'package:mediapp/resourses/components/custom_textfield.dart';
+import 'package:mediapp/views/appoinment_view/appoinment_view.dart';
 import 'package:mediapp/views/home/home.dart';
-import 'package:mediapp/views/home/home_view.dart';
 import 'package:mediapp/views/signup_view/signup_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  var isDoctor = false;
+  @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -47,16 +55,39 @@ class LoginView extends StatelessWidget {
                 children: [
                   CustomTextField(
                     hint: AppStrings.email,
+                    textControleer: controller.emailController,
                   ),
-                  5.heightBox,
-                  CustomTextField(hint: AppStrings.password),
                   10.heightBox,
+                  CustomTextField(
+                    hint: AppStrings.password,
+                    textControleer: controller.passwordController,
+                  ),
+                  20.heightBox,
                   AppStrings.forgetPassword.text.make(),
                   10.heightBox,
+                  SwitchListTile(
+                    value: isDoctor,
+                    onChanged: (newValue) {
+                      setState(() {
+                        isDoctor = newValue;
+                      });
+                    },
+                    title: 'Sign in as a doctor'.text.make(),
+                  ),
+                  20.heightBox,
                   CustomButton(
                     buttonText: AppStrings.login,
-                    onTap: () {
-                      Get.to(() => const Home());
+                    onTap: () async {
+                      await controller.loginUser();
+                      if (controller.userCredential != null) {
+                        if (isDoctor) {
+                          //signing as a doctor
+                          Get.to(() => const AppoinmentView());
+                        } else {
+                          //signing as a user
+                          Get.to(() => const Home());
+                        }
+                      }
                     },
                   ),
                   2.heightBox,

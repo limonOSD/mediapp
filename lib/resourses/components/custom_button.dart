@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mediapp/consts/strings.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomButton extends StatelessWidget {

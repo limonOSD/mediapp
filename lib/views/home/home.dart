@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediapp/consts/colors.dart';
 import 'package:mediapp/views/appoinment_view/appoinment_view.dart';
-import 'package:mediapp/views/book_appointment_view/book_appointment_view.dart';
 import 'package:mediapp/views/catagory_view/catagory_view.dart';
 import 'package:mediapp/views/home/home_view.dart';
 import 'package:mediapp/views/login_view/login_view.dart';
@@ -20,7 +19,6 @@ class _HomeState extends State<Home> {
     const HomeView(),
     const AppoinmentView(),
     const CatagoryView(),
-    const LoginView(),
     const SettingsView(),
   ];
   @override
@@ -45,7 +43,6 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.book_online), label: 'Appointment'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.category), label: 'Catagory'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Doctor'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Settings'),
           ]),
